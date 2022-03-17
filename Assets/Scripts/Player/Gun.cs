@@ -1,50 +1,78 @@
 using System;
+using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Player
 {
 	public class Gun : MonoBehaviour
 	{
-		[SerializeField] private GameObject bullet;
-		[SerializeField] private float shotVelocity = 10;
+		#region Serialized Private Fields
 
+		[SerializeField] private GameObject bulletPrefab;
+		[SerializeField] private float shotVelocity = 10, minAngle = 90, maxAngle = 57;
+
+		#endregion
+
+		#region Private Fields
+
+		private Transform _transform;
 		private float _gunTip;
-		private Vector3 reticlePosition;
+		private Stack<GameObject> bullets = new Stack<GameObject>();
 
-		public void AngleOfElevation(float change)
-		{
-			var rotation = transform.rotation.eulerAngles;
-			rotation.x = Mathf.Max(Mathf.Min(rotation.x + change, 90), 57);
-			transform.rotation = Quaternion.Euler(rotation);
-		}
+		#endregion
 
-		public event Action<Vector3> ReticleChangedPosition;
+		#region Function Events
 
 		private void Awake()
 		{
-			_gunTip = transform.localScale.y / 2;
+			_transform = transform;
+			_gunTip = _transform.localScale.y / 2;
+			Bullet.SetStack(bullets);
+			// if (Physics.Raycast(transform.position, shootingDirection, out var hit, 100, LayerMask.GetMask("Reticle Projection")))
+			// 	hit.point;
 		}
 
 		private void Update()
 		{
-			var shootingDirection = transform.up;
-			if (Input.GetMouseButtonDown(0))
+			if (!Input.GetMouseButtonDown(0)) return;
+			var shootingDirection = _transform.up;
+			var shootingPosition = _transform.position + shootingDirection * _gunTip;
+			Shoot(shootingPosition, shootingDirection);
+		}
+
+		#endregion
+
+		#region Public Methods
+
+		public void ChangeAngleOfElevation(float change)
+		{
+			var rotation = _transform.rotation.eulerAngles;
+			rotation.x = Mathf.Max(Mathf.Min(rotation.x + change, minAngle), maxAngle);
+			transform.rotation = Quaternion.Euler(rotation);
+		}
+
+		#endregion
+
+		#region Private Methods
+
+		private void Shoot(Vector3 shootingPosition, Vector3 shootingDirection)
+		{
+			GameObject bullet;
+			try
 			{
-				bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
-				bullet.transform.position = transform.position + shootingDirection * _gunTip;
-				bullet.GetComponent<Rigidbody>().AddForce(shotVelocity * shootingDirection, ForceMode.Impulse);
+				bullet = bullets.Pop();
+				bullet.SetActive(true);
+			}
+			catch (InvalidOperationException)
+			{
+				bullet = Instantiate(bulletPrefab, shootingPosition, quaternion.identity);
 			}
 
-			ReticleChangedPosition?.Invoke(transform.position + 20 * shootingDirection);
-			// if (Physics.Raycast(transform.position, shootingDirection, out var hit, 100, LayerMask.GetMask("Reticle Projection")))
-			// {
-			// 	if (reticlePosition != hit.point)
-			// 	{
-			// 		reticlePosition = hit.point;
-			// 		ReticleChangedPosition?.Invoke(reticlePosition, hit.normal);
-			// 	}
-			// }
+			bullet.transform.position = shootingPosition;
+			bullet.GetComponent<Rigidbody>().AddForce(shotVelocity * shootingDirection, ForceMode.Impulse);
 		}
+
+		#endregion
 	}
 }
