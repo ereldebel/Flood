@@ -76,7 +76,7 @@ Shader "Unlit/Water Shader"
                 // Without this line, the shape will be rendered directly to the
                 // screen regardless of the object's Transform. Try it!
                 float sinT = sin(_Time.y);
-                o.vertex = UnityObjectToClipPos(i.vertex) + float4(cos(_Time.y) * 4 + _Time.x * 6, sinT * 8, sinT / 5, 0);
+                o.vertex = UnityObjectToClipPos(i.vertex) + float4(cos(_Time.y) * 4, sinT * 8, 0, 0);
 
                 // World space coordinates.
                 o.worldPos = mul(unity_ObjectToWorld, i.vertex);

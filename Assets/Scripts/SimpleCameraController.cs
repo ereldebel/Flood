@@ -1,74 +1,61 @@
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
+using Player;
 using UnityEngine;
 
 public class SimpleCameraController : MonoBehaviour
 {
-	class CameraState
+	private class CameraState
 	{
 		public float yaw;
 		public float pitch;
-		public float roll;
-		public float x;
-		public float y;
-		public float z;
+		private float _roll;
+		private float _x;
+		private float _y;
+		private float _z;
 
 		public void SetFromTransform(Transform t)
 		{
-			pitch = t.eulerAngles.x;
-			yaw = t.eulerAngles.y;
-			roll = t.eulerAngles.z;
-			x = t.position.x;
-			y = t.position.y;
-			z = t.position.z;
-		}
-
-		public void Translate(Vector3 translation)
-		{
-			Vector3 rotatedTranslation = Quaternion.Euler(pitch, yaw, roll) * translation;
-
-			x += rotatedTranslation.x;
-			y += rotatedTranslation.y;
-			z += rotatedTranslation.z;
+			var eulerAngles = t.eulerAngles;
+			var position = t.position;
+			pitch = eulerAngles.x;
+			yaw = eulerAngles.y;
+			_roll = eulerAngles.z;
+			_x = position.x;
+			_y = position.y;
+			_z = position.z;
 		}
 
 		public void LerpTowards(CameraState target, float positionLerpPct, float rotationLerpPct)
 		{
 			yaw = Mathf.Lerp(yaw, target.yaw, rotationLerpPct);
 			pitch = Mathf.Lerp(pitch, target.pitch, rotationLerpPct);
-			roll = Mathf.Lerp(roll, target.roll, rotationLerpPct);
-                
-			x = Mathf.Lerp(x, target.x, positionLerpPct);
-			y = Mathf.Lerp(y, target.y, positionLerpPct);
-			z = Mathf.Lerp(z, target.z, positionLerpPct);
+			_roll = Mathf.Lerp(_roll, target._roll, rotationLerpPct);
+
+			_x = Mathf.Lerp(_x, target._x, positionLerpPct);
+			_y = Mathf.Lerp(_y, target._y, positionLerpPct);
+			_z = Mathf.Lerp(_z, target._z, positionLerpPct);
 		}
 
 		public void UpdateTransform(Transform t)
 		{
-			t.eulerAngles = new Vector3(pitch, yaw, roll);
-			t.position = new Vector3(x, y, z);
+			t.eulerAngles = new Vector3(pitch, yaw, _roll);
+			t.position = new Vector3(_x, _y, _z);
 		}
 	}
 
-	const float k_MouseSensitivityMultiplier = 0.01f;
+	private const float KMouseSensitivityMultiplier = 0.01f;
 
-	CameraState m_TargetCameraState = new CameraState();
-	CameraState m_InterpolatingCameraState = new CameraState();
-
-	[Header("Movement Settings")]
-	[Tooltip("Exponential boost factor on translation, controllable by mouse wheel.")]
-	public float boost = 3.5f;
+	readonly CameraState m_TargetCameraState = new CameraState();
+	readonly CameraState m_InterpolatingCameraState = new CameraState();
 
 	[Tooltip("Time it takes to interpolate camera position 99% of the way to the target."), Range(0.001f, 1f)]
 	public float positionLerpTime = 0.2f;
 
-	[Header("Rotation Settings")]
-	[Tooltip("Multiplier for the sensitivity of the rotation.")]
+	[Header("Rotation Settings")] [Tooltip("Multiplier for the sensitivity of the rotation.")]
 	public float mouseSensitivity = 60.0f;
 
 	[Tooltip("X = Change in mouse position.\nY = Multiplicative factor for camera rotation.")]
-	public AnimationCurve mouseSensitivityCurve = new AnimationCurve(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
+	public AnimationCurve mouseSensitivityCurve =
+		new AnimationCurve(new Keyframe(0f, 0.5f, 0f, 5f), new Keyframe(1f, 2.5f, 0f, 0f));
 
 	[Tooltip("Time it takes to interpolate camera rotation 99% of the way to the target."), Range(0.001f, 1f)]
 	public float rotationLerpTime = 0.01f;
@@ -76,91 +63,38 @@ public class SimpleCameraController : MonoBehaviour
 	[Tooltip("Whether or not to invert our Y axis for mouse input to rotation.")]
 	public bool invertY = false;
 
+	[SerializeField] private Gun gun;
+
 	private void Awake()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}
 
-#if ENABLE_INPUT_SYSTEM
-        InputAction movementAction;
-        InputAction verticalMovementAction;
-        InputAction lookAction;
-        InputAction boostFactorAction;
-        bool        mouseRightButtonPressed;
-
-        void Start()
-        {
-            var map = new InputActionMap("Simple Camera Controller");
-
-            lookAction = map.AddAction("look", binding: "<Mouse>/delta");
-            movementAction = map.AddAction("move", binding: "<Gamepad>/leftStick");
-            verticalMovementAction = map.AddAction("Vertical Movement");
-            boostFactorAction = map.AddAction("Boost Factor", binding: "<Mouse>/scroll");
-
-            lookAction.AddBinding("<Gamepad>/rightStick").WithProcessor("scaleVector2(x=15, y=15)");
-            movementAction.AddCompositeBinding("Dpad")
-                .With("Up", "<Keyboard>/w")
-                .With("Up", "<Keyboard>/upArrow")
-                .With("Down", "<Keyboard>/s")
-                .With("Down", "<Keyboard>/downArrow")
-                .With("Left", "<Keyboard>/a")
-                .With("Left", "<Keyboard>/leftArrow")
-                .With("Right", "<Keyboard>/d")
-                .With("Right", "<Keyboard>/rightArrow");
-            verticalMovementAction.AddCompositeBinding("Dpad")
-                .With("Up", "<Keyboard>/pageUp")
-                .With("Down", "<Keyboard>/pageDown")
-                .With("Up", "<Keyboard>/e")
-                .With("Down", "<Keyboard>/q")
-                .With("Up", "<Gamepad>/rightshoulder")
-                .With("Down", "<Gamepad>/leftshoulder");
-            boostFactorAction.AddBinding("<Gamepad>/Dpad").WithProcessor("scaleVector2(x=1, y=4)");
-
-            movementAction.Enable();
-            lookAction.Enable();
-            verticalMovementAction.Enable();
-            boostFactorAction.Enable();
-        }
-#endif
-
-	void OnEnable()
+	private void OnEnable()
 	{
 		m_TargetCameraState.SetFromTransform(transform);
 		m_InterpolatingCameraState.SetFromTransform(transform);
 	}
 
-
-	void Update()
+	private void Update()
 	{
-		// Exit Sample  
-
-		if (IsEscapePressed())
+		if (Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit();
 #if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false; 
+			UnityEditor.EditorApplication.isPlaying = false;
 #endif
 		}
 
-		// Rotation
-
-		var mouseMovement = GetInputLookRotation() * k_MouseSensitivityMultiplier * mouseSensitivity;
+		var mouseMovement = GetInputLookRotation() * KMouseSensitivityMultiplier * mouseSensitivity;
 		if (invertY)
 			mouseMovement.y = -mouseMovement.y;
-                
+
 		var mouseSensitivityFactor = mouseSensitivityCurve.Evaluate(mouseMovement.magnitude);
 
 		m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
-		m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
-
-		// Translation
-		var translation = Vector3.zero;
-
-
-
-
-		m_TargetCameraState.Translate(translation);
+		gun.AngleOfElevation(mouseMovement.y * mouseSensitivityFactor);
 
 		// Framerate-independent interpolation
 		// Calculate the lerp amount, such that we get 99% of the way to our target in the specified time
@@ -172,26 +106,8 @@ public class SimpleCameraController : MonoBehaviour
 	}
 
 
-	Vector2 GetInputLookRotation()
+	private static Vector2 GetInputLookRotation()
 	{
-		// try to compensate the diff between the two input systems by multiplying with empirical values
-#if ENABLE_INPUT_SYSTEM
-            var delta = lookAction.ReadValue<Vector2>();
-            delta *= 0.5f; // Account for scaling applied directly in Windows code by old input system.
-            delta *= 0.1f; // Account for sensitivity setting on old Mouse X and Y axes.
-            return delta;
-#else
-		// return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-		return new Vector2(Input.GetAxis("Mouse X"), 0);
-#endif
-	}
-
-	bool IsEscapePressed()
-	{
-#if ENABLE_INPUT_SYSTEM
-            return Keyboard.current != null ? Keyboard.current.escapeKey.isPressed : false; 
-#else
-		return Input.GetKey(KeyCode.Escape);
-#endif
+		return new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
 	}
 }
