@@ -18,8 +18,8 @@ namespace Player
 
 		private Transform _transform;
 		private float _gunTip;
-		private Stack<GameObject> bullets = new Stack<GameObject>();
-
+		private readonly Stack<GameObject> _bullets = new Stack<GameObject>();
+		
 		#endregion
 
 		#region Function Events
@@ -28,7 +28,7 @@ namespace Player
 		{
 			_transform = transform;
 			_gunTip = _transform.localScale.y / 2;
-			Bullet.SetStack(bullets);
+			Bullet.SetStack(_bullets);
 			// if (Physics.Raycast(transform.position, shootingDirection, out var hit, 100, LayerMask.GetMask("Reticle Projection")))
 			// 	hit.point;
 		}
@@ -61,7 +61,7 @@ namespace Player
 			GameObject bullet;
 			try
 			{
-				bullet = bullets.Pop();
+				bullet = _bullets.Pop();
 				bullet.SetActive(true);
 			}
 			catch (InvalidOperationException)

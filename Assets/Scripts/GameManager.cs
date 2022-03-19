@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	#region Serialized Private Fields
+
+	[SerializeField] private Transform water;
+	
+	#endregion
+	
 	#region Function Events
 
 	private void Update()
@@ -13,6 +19,11 @@ public class GameManager : MonoBehaviour
 			UnityEditor.EditorApplication.isPlaying = false;
 #endif
 		}
+	}
+
+	private void RaiseWater()
+	{
+		var y = water.position.y;
 	}
 
 	#endregion
