@@ -1,0 +1,37 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyGenerator : MonoBehaviour
+{
+
+    public GameObject enemy;
+
+    private System.Random _random = new System.Random();
+
+    public Vector3 startPos;
+    // Start is called before the first frame update
+    void Start()
+    {
+        startPos = enemy.transform.position;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            GenerateEnemy();
+        }
+        
+    }
+
+    void GenerateEnemy()
+    {
+        GameObject newEnemy = Instantiate(enemy);
+        newEnemy.transform.position = startPos;
+        newEnemy.SetActive(true);
+        newEnemy.GetComponent<PosisionEnemy>().PositionEnemy((float)_random.NextDouble()*360);
+    }
+}
