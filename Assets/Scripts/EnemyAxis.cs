@@ -10,6 +10,8 @@ public class EnemyAxis : MonoBehaviour
 
 	[SerializeField] private GameObject[] enemies;
 
+	[SerializeField] private GameObject enemyRotation;
+
 	public float dropSpeed = 1;
 
 	private static Stack<GameObject> _enemyAxes;
@@ -18,10 +20,11 @@ public class EnemyAxis : MonoBehaviour
 	{
 		if (!(transform.position.y < -5)) return;
 		// PositionEnemy(Random.Range(0, 360));
+		transform.rotation = Quaternion.identity;
 		gameObject.SetActive(false);
+		enemyRotation.transform.position = transform.position;
 		foreach (var enemy in enemies)
 		{
-			enemy.transform.position = transform.position + Vector3.down;
 			enemy.SetActive(true);
 		}
 	}
@@ -33,9 +36,9 @@ public class EnemyAxis : MonoBehaviour
 
 	public void PositionEnemy(float degree)
 	{
+		enemyRotation.transform.position += Vector3.right * radius;
 		foreach (var enemy in enemies)
 		{
-			enemy.transform.position += Vector3.right * radius;
 			enemy.SetActive(true);
 		}
 		transform.rotation = Quaternion.Euler(0, degree, 0);
