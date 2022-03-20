@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGenerator: {fileID: 1568539958}
-  waveInterval: 0
+  waveInterval: 3
 --- !u!4 &683536919
 Transform:
   m_ObjectHideFlags: 0
