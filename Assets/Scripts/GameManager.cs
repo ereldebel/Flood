@@ -1,4 +1,5 @@
 using System;
+using Enemies;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private EnemyGenerator enemyGenerator;
 
-	[SerializeField] private float _waveInterval;
+	[SerializeField] private float waveInterval;
 
 	#endregion
 
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
 		if (Time.time >= _nextEnemyWave)
 		{
 			enemyGenerator.GenerateEnemy();
-			_nextEnemyWave += _waveInterval;
+			_nextEnemyWave += waveInterval;
 		}
 
 		if (Input.GetKey(KeyCode.Escape))
@@ -111,7 +112,6 @@ public class GameManager : MonoBehaviour
 	private static void RestoreHighScore()
 	{
 		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
-		;
 		HighScoreUpdated?.Invoke(_highScore);
 	}
 

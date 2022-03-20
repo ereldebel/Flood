@@ -31,7 +31,7 @@ namespace Mechanics.EnemyGenarate
         public void PositionEnemy(float degree)
         {
             enemy.transform.position += Vector3.right * radius;
-            transform.rotation = Quaternion.EulerAngles(0, degree, 0);
+            transform.rotation = Quaternion.Euler(0, degree, 0);
             enemy.SetActive(true);
         }
 

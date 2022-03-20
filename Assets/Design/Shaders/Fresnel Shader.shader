@@ -1,5 +1,5 @@
-// The path to the shader in the dropdown.
-Shader "Custom/Water Shader"
+﻿// The path to the shader in the dropdown.
+Shader "Custom/Fresnel"
 {
     // Input Data
     Properties
@@ -75,7 +75,7 @@ Shader "Custom/Water Shader"
                 // Converts local space (object space) to "screen space" (clip space).
                 // Without this line, the shape will be rendered directly to the
                 // screen regardless of the object's Transform. Try it!
-                o.vertex = UnityObjectToClipPos(i.vertex) + float4(0, cos(_Time.x) / 8, 0, 0);
+                o.vertex = UnityObjectToClipPos(i.vertex) + float4(0, cos(_Time.x), 0, 0);
 
                 // World space coordinates.
                 o.worldPos = mul(unity_ObjectToWorld, i.vertex);
@@ -108,21 +108,21 @@ Shader "Custom/Water Shader"
                 float3 N = i.normal;
 
                 // Direction to light in case of a directional light.
-                float3 L = _WorldSpaceLightPos0.xyz;
+                // float3 L = _WorldSpaceLightPos0.xyz;
                 // Lambertian lighting.
-                float3 diffuseLight = saturate(dot(N, L)) * _LightColor0.xyz;
-                return float4(diffuseLight, 1) * _Color;
+                // float3 diffuseLight = saturate(dot(N, L)) * _LightColor0.xyz;
+                // return float4(diffuseLight, 1) * _Color;
 
                 // _Time is super useful. _Time = float4(t/20, t, t*2, t*3)
                 //return cos(_Time.y) * 0.5 + 0.5;
 
                 // View vector. From fragment to the camera.
-                // float3 V = normalize(_WorldSpaceCameraPos - i.worldPos);
+                float3 V = normalize(_WorldSpaceCameraPos - i.worldPos);
                 // Fresnel effect.
-                // float fresnel = 1 - dot(V, N);
-                // fresnel *= fresnel;
-                // float4 result = fresnel.x * _Time;
-                // return frac(float4(result.xyz, 1));
+                float fresnel = 1 - dot(V, N);
+                fresnel *= fresnel;
+                float4 result = fresnel.x * _Time;
+                return frac(float4(result.xyz, 1));
 
                 // Vectors and colors are interchangeable.
                 // return _Color;

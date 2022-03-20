@@ -45,19 +45,15 @@ namespace Player
 
 		#region Public Methods
 
-		public void ChangeAngleOfElevation(float changeAngle)
+		public void ChangeAngleOfElevation(float change)
 		{
-			changeAngle /= 2;
-			print(_transform.rotation);
-			// var xRotation = 2 * Mathf.Acos(_transform.rotation.x);
 			var xRotation = _transform.localEulerAngles.x;
-			if (xRotation + changeAngle > lowestAngle)
-				// change = xRotation - lowestAngle;
-				return;
-			else if (xRotation + changeAngle < highestAngle)
-				// change = highestAngle - xRotation;
-				return;
-			transform.Rotate(Vector3.right, changeAngle);
+			// if (xRotation + change > lowestAngle)
+			// 	// change = xRotation - lowestAngle;
+			// 	return;
+			if (xRotation + change < highestAngle)
+				change = highestAngle - xRotation;
+			transform.Rotate(Vector3.right, change);
 		}
 
 		#endregion
