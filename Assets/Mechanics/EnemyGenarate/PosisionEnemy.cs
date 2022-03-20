@@ -1,8 +1,11 @@
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering;
+
 
 
 public class PosisionEnemy : MonoBehaviour
@@ -12,7 +15,7 @@ public class PosisionEnemy : MonoBehaviour
 
     public GameObject enemy;
 
-    private System.Random _random = new System.Random();
+    public float dropSpeed = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -26,16 +29,20 @@ public class PosisionEnemy : MonoBehaviour
         
     }
 
+    private void FixedUpdate()
+    {
+        transform.position += Vector3.down * Time.deltaTime * dropSpeed;
+    }
+
     public void PositionEnemy(float degree)
     {
-        enemy.transform.localPosition += Vector3.right * radius;
-        transform.rotation = new Quaternion(0, degree, 0, 0);
+        enemy.transform.position += Vector3.right * radius;
+        transform.rotation = Quaternion.EulerAngles(0, degree, 0);
         enemy.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        print("hello");
         Destroy(gameObject);
     }
 }

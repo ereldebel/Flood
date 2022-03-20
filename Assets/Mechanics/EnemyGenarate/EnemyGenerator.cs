@@ -1,15 +1,14 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class EnemyGenerator : MonoBehaviour
 {
 
     public GameObject enemy;
-
-    private System.Random _random = new System.Random();
-
+    
     public Vector3 startPos;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +31,6 @@ public class EnemyGenerator : MonoBehaviour
         GameObject newEnemy = Instantiate(enemy);
         newEnemy.transform.position = startPos;
         newEnemy.SetActive(true);
-        newEnemy.GetComponent<PosisionEnemy>().PositionEnemy((float)_random.NextDouble()*360);
+        newEnemy.GetComponent<PosisionEnemy>().PositionEnemy(Random.Range(0f, 360f));
     }
 }

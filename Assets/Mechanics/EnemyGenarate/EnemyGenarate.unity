@@ -545,7 +545,7 @@ PrefabInstance:
     - target: {fileID: 8990511253663708091, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+      objectReference: {fileID: 0}
     - target: {fileID: 8990511253663708092, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
       propertyPath: m_Name
       value: Enemy Pivot
@@ -562,6 +562,18 @@ PrefabInstance:
       propertyPath: enemy
       value: 
       objectReference: {fileID: 1015296489}
+    - target: {fileID: 8990511253663708094, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
+      propertyPath: radius
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990511253663708095, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8990511253663708095, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8990511253040621451, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
