@@ -75,7 +75,7 @@ Shader "Unlit/Water Shader"
                 // Converts local space (object space) to "screen space" (clip space).
                 // Without this line, the shape will be rendered directly to the
                 // screen regardless of the object's Transform. Try it!
-                o.vertex = UnityObjectToClipPos(i.vertex) + float4(0, cos(_Time.x) / 8, 0, 0);
+                o.vertex = UnityObjectToClipPos(i.vertex) + float4(0, cos(_Time.x), 0, 0);
 
                 // World space coordinates.
                 o.worldPos = mul(unity_ObjectToWorld, i.vertex);
@@ -111,7 +111,7 @@ Shader "Unlit/Water Shader"
                 float3 L = _WorldSpaceLightPos0.xyz;
                 // Lambertian lighting.
                 float3 diffuseLight = saturate(dot(N, L)) * _LightColor0.xyz;
-                return float4(diffuseLight, 1);
+                return float4(diffuseLight, 1) * _Color;
 
                 // _Time is super useful. _Time = float4(t/20, t, t*2, t*3)
                 //return cos(_Time.y) * 0.5 + 0.5;

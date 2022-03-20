@@ -64,7 +64,7 @@ MonoBehaviour:
   - {fileID: 5470305408736733350}
   - {fileID: 5187978561496078949}
   enemyRotation: {fileID: 8119507236333249639}
-  dropSpeed: 1
+  dropSpeed: 0.5
 --- !u!1 &8119507236333249639
 GameObject:
   m_ObjectHideFlags: 0

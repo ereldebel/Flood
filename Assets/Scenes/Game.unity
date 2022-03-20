@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyGenerator: {fileID: 1568539958}
-  _waveInterval: 2
+  _waveInterval: 4
 --- !u!4 &683536919
 Transform:
   m_ObjectHideFlags: 0
@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterRiseTime: 1
-  waterRiseSpeed: 1
+  waterRiseSpeed: 0.5
 --- !u!54 &1069411228
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1394,7 +1394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503968883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: -12, z: -13}
+  m_LocalPosition: {x: 0, y: -12, z: -13}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children:
   - {fileID: 1811318035}
@@ -1619,9 +1619,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6872008871456612102, guid: c841ea2af0fc2904a8d11a8deb25f58d, type: 3}
-  shotVelocity: 30
+  shotVelocity: 35
   lowestAngle: 110
-  highestAngle: 57
+  highestAngle: 55
 --- !u!1 &1568539957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2102,7 +2102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872661301}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13, y: -9, z: 0}
+  m_LocalPosition: {x: 13, y: -13, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 1}
   m_Children:
   - {fileID: 1726649473}
