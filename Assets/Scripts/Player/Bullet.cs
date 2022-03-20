@@ -5,9 +5,14 @@ namespace Player
 {
 	public class Bullet : MonoBehaviour
 	{
+		#region Serialized Private Fields
+
+		[SerializeField] private float maxDistance = 30;
+
+		#endregion
+
 		#region Private Static Fields
 
-		private const float MaxDistance = 20;
 		private static Stack<GameObject> _bullets;
 
 		#endregion
@@ -33,7 +38,7 @@ namespace Player
 
 		private void Update()
 		{
-			if (transform.position.magnitude > MaxDistance)
+			if (transform.position.magnitude > maxDistance)
 				gameObject.SetActive(false);
 		}
 

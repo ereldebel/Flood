@@ -10,7 +10,9 @@ namespace Player
 		#region Serialized Private Fields
 
 		[SerializeField] private GameObject bulletPrefab;
-		[SerializeField] private float shotVelocity = 10, minAngle = 90, maxAngle = 57;
+		[SerializeField] private float shotVelocity = 10;
+		[SerializeField] private float lowestAngle = 90;
+		[SerializeField] private float highestAngle = 57;
 
 		#endregion
 
@@ -18,7 +20,7 @@ namespace Player
 
 		private Transform _transform;
 		private float _gunTip;
-		private Stack<GameObject> bullets = new Stack<GameObject>();
+		private readonly Stack<GameObject> _bullets = new Stack<GameObject>();
 
 		#endregion
 
@@ -28,9 +30,7 @@ namespace Player
 		{
 			_transform = transform;
 			_gunTip = _transform.localScale.y / 2;
-			Bullet.SetStack(bullets);
-			// if (Physics.Raycast(transform.position, shootingDirection, out var hit, 100, LayerMask.GetMask("Reticle Projection")))
-			// 	hit.point;
+			Bullet.SetStack(_bullets);
 		}
 
 		private void Update()
@@ -47,9 +47,12 @@ namespace Player
 
 		public void ChangeAngleOfElevation(float change)
 		{
-			var rotation = _transform.rotation.eulerAngles;
-			rotation.x = Mathf.Max(Mathf.Min(rotation.x + change, minAngle), maxAngle);
-			transform.rotation = Quaternion.Euler(rotation);
+			var xRotation = _transform.rotation.eulerAngles.x;
+			if (xRotation + change > lowestAngle)
+				change -= xRotation - lowestAngle;
+			else if (xRotation < highestAngle)
+				change = highestAngle - xRotation;
+			transform.Rotate(Vector3.right, change);
 		}
 
 		#endregion
@@ -61,7 +64,7 @@ namespace Player
 			GameObject bullet;
 			try
 			{
-				bullet = bullets.Pop();
+				bullet = _bullets.Pop();
 				bullet.SetActive(true);
 			}
 			catch (InvalidOperationException)
