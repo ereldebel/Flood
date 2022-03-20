@@ -566,6 +566,10 @@ PrefabInstance:
       propertyPath: radius
       value: 175
       objectReference: {fileID: 0}
+    - target: {fileID: 8990511253663708094, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
+      propertyPath: dropSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8990511253663708095, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
       propertyPath: m_Mass
       value: 0.5
@@ -576,4 +580,5 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8990511253040621451, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
+    - {fileID: 8990511253663708095, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 87c054f16f508cd4393b1268d2202ce4, type: 3}
