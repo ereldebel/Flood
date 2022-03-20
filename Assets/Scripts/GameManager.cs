@@ -1,17 +1,22 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
 	#region Serialized Private Fields
 
-	[SerializeField] private Transform water;
+	[SerializeField] private EnemyGenerator enemyGenerator;
+
+	[SerializeField] private float _waveInterval;
 
 	#endregion
 
 	#region Private Fields
 
 	private int _points;
+	private int _columns = 4;
+	private float _nextEnemyWave;
 
 	#endregion
 
@@ -39,6 +44,12 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (Time.time >= _nextEnemyWave)
+		{
+			enemyGenerator.GenerateEnemy();
+			_nextEnemyWave += _waveInterval;
+		}
+
 		if (Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit();
@@ -47,11 +58,6 @@ public class GameManager : MonoBehaviour
 #endif
 		}
 	}
-
-	#endregion
-
-
-	#region Function Events
 
 	private void Awake()
 	{
@@ -71,12 +77,22 @@ public class GameManager : MonoBehaviour
 
 	#endregion
 
-
 	#region Public Static Methods
 
 	public static void EnemyKilled()
 	{
-		PointsUpdated?.Invoke(++_shared._points);
+		PointsUpdated?.Invoke(_shared._points += _shared._columns);
+	}
+
+	public static void GameOver()
+	{
+		SceneManager.LoadScene(0);
+	}
+
+	public static void ColumnDrowned()
+	{
+		if (--_shared._columns <= 0)
+			GameOver();
 	}
 
 	#endregion

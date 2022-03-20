@@ -1,36 +1,35 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-
-public class EnemyGenerator : MonoBehaviour
+namespace Mechanics.EnemyGenarate
 {
+    public class EnemyGenerator : MonoBehaviour
+    {
 
-    public GameObject enemy;
+        public GameObject enemy;
     
-    public Vector3 startPos;
-    // Start is called before the first frame update
-    void Start()
-    {
-        startPos = enemy.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
+        public Vector3 startPos;
+        // Start is called before the first frame update
+        void Start()
         {
-            GenerateEnemy();
+            startPos = enemy.transform.position;
         }
-        
-    }
 
-    void GenerateEnemy()
-    {
-        GameObject newEnemy = Instantiate(enemy);
-        newEnemy.transform.position = startPos;
-        newEnemy.SetActive(true);
-        newEnemy.GetComponent<PosisionEnemy>().PositionEnemy(Random.Range(0f, 360f));
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                GenerateEnemy();
+            }
+        
+        }
+
+        void GenerateEnemy()
+        {
+            GameObject newEnemy = Instantiate(enemy);
+            newEnemy.transform.position = startPos;
+            newEnemy.SetActive(true);
+            newEnemy.GetComponent<PosisionEnemy>().PositionEnemy(Random.Range(0f, 360f));
+        }
     }
 }

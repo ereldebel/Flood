@@ -1,34 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShot : MonoBehaviour
+namespace Mechanics.EnemyShoot
 {
-    public Transform target;
+    public class EnemyShot : MonoBehaviour
+    {
+        public Transform target;
 
-    public Rigidbody bullet;
+        public Rigidbody bullet;
 
-    public float speed = 10;
+        public float speed = 10;
     
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Start is called before the first frame update
+        void Start()
         {
-            Shoot();
+        
         }
-    }
 
-    void Shoot()
-    {
-        Vector3 dir = Vector3.Normalize(target.position - transform.position);
-        bullet.AddForce(dir * speed, ForceMode.Impulse);
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Shoot();
+            }
+        }
+
+        void Shoot()
+        {
+            Vector3 dir = Vector3.Normalize(target.position - transform.position);
+            bullet.AddForce(dir * speed, ForceMode.Impulse);
+        }
     }
 }

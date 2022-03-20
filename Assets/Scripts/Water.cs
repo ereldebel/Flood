@@ -7,24 +7,31 @@ public class Water : MonoBehaviour
 	[SerializeField] private float waterRiseTime = 5;
 	[SerializeField] private float waterRiseSpeed = 5;
 
-	private float _currentRiseFinishTime;
+	private float _currentRiseFinishTime = 0;
 	private Transform _transform;
 
 	private void Awake()
 	{
 		_transform = transform;
-		waterRiseSpeed /= Time.fixedDeltaTime;
+		waterRiseSpeed *= Time.fixedDeltaTime;
 	}
 
-	private void OnCollisionEnter(Collision collision)
+	private void Update()
 	{
-		collision.gameObject.SetActive(false);
+		if (_transform.position.y >= 0)
+			GameManager.GameOver();
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		other.gameObject.SetActive(false);
 		if (Time.time >= _currentRiseFinishTime)
 		{
 			_currentRiseFinishTime = Time.time + waterRiseTime;
 			StartCoroutine(RaiseWater());
 			return;
 		}
+
 		_currentRiseFinishTime += waterRiseTime;
 	}
 
