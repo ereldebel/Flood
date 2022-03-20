@@ -17,10 +17,13 @@ public class EnemyAxis : MonoBehaviour
 	private void Update()
 	{
 		if (!(transform.position.y < -5)) return;
-		PositionEnemy(Random.Range(0, 360));
+		// PositionEnemy(Random.Range(0, 360));
 		gameObject.SetActive(false);
 		foreach (var enemy in enemies)
+		{
+			enemy.transform.position = transform.position + Vector3.down;
 			enemy.SetActive(true);
+		}
 	}
 
 	private void FixedUpdate()
@@ -30,12 +33,13 @@ public class EnemyAxis : MonoBehaviour
 
 	public void PositionEnemy(float degree)
 	{
-		transform.rotation = Quaternion.Euler(0, degree, 0);
 		foreach (var enemy in enemies)
 		{
 			enemy.transform.position += Vector3.right * radius;
 			enemy.SetActive(true);
 		}
+		transform.rotation = Quaternion.Euler(0, degree, 0);
+		
 	}
 
 	private void OnDisable()
