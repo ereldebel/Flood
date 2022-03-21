@@ -47,10 +47,15 @@ namespace Player
 
 		public void ChangeAngleOfElevation(float change)
 		{
+			
 			var xRotation = _transform.localEulerAngles.x;
-			// if (xRotation + change > lowestAngle)
-			// 	// change = xRotation - lowestAngle;
-			// 	return;
+			if (xRotation + change > lowestAngle)
+			{
+				var rotation = _transform.localEulerAngles;
+				rotation.x = lowestAngle;
+				_transform.localEulerAngles = rotation;
+				return;
+			}
 			if (xRotation + change < highestAngle)
 				change = highestAngle - xRotation;
 			transform.Rotate(Vector3.right, change);
