@@ -13,6 +13,7 @@ namespace Player
 		[SerializeField] private float shotVelocity = 10;
 		[SerializeField] private float lowestAngle = 90;
 		[SerializeField] private float highestAngle = 57;
+		[SerializeField] private Animator[] animators;
 
 		#endregion
 
@@ -21,6 +22,8 @@ namespace Player
 		private Transform _transform;
 		private float _gunTip;
 		private readonly Stack<GameObject> _bullets = new Stack<GameObject>();
+		private static readonly int ShootAnimation = Animator.StringToHash("Shoot");
+		private Vector3 _rotation;
 
 		#endregion
 
@@ -31,6 +34,7 @@ namespace Player
 			_transform = transform;
 			_gunTip = _transform.localScale.y / 2;
 			Bullet.SetStack(_bullets);
+			_rotation = _transform.localEulerAngles;
 		}
 
 		private void Update()
@@ -47,18 +51,13 @@ namespace Player
 
 		public void ChangeAngleOfElevation(float change)
 		{
-			
-			var xRotation = _transform.localEulerAngles.x;
-			if (xRotation + change > lowestAngle)
-			{
-				var rotation = _transform.localEulerAngles;
-				rotation.x = lowestAngle;
-				_transform.localEulerAngles = rotation;
-				return;
-			}
-			if (xRotation + change < highestAngle)
-				change = highestAngle - xRotation;
-			transform.Rotate(Vector3.right, change);
+			if (_rotation.x + change > lowestAngle)
+				_rotation.x = lowestAngle;
+			else if (_rotation.x + change < highestAngle)
+				_rotation.x = highestAngle;
+			else
+				_rotation.x += change;
+			transform.localEulerAngles = _rotation;
 		}
 
 		#endregion
@@ -80,6 +79,8 @@ namespace Player
 
 			bullet.transform.position = shootingPosition;
 			bullet.GetComponent<Rigidbody>().AddForce(shotVelocity * shootingDirection, ForceMode.Impulse);
+			foreach (var animator in animators)
+				animator.SetTrigger(ShootAnimation);
 		}
 
 		#endregion
