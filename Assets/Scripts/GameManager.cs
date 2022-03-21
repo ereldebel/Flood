@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
 	#region Constants
 
-	private const string HighScorePref = "HighScore";
+	private const string HighScorePref = "High Score";
 
 	#endregion
 
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 		if (Time.time >= _nextEnemyWave)
 		{
 			enemyGenerator.GenerateEnemy();
-			_nextEnemyWave += waveInterval;
+			_nextEnemyWave = Time.time + waveInterval;
 		}
 
 		if (Input.GetKey(KeyCode.Escape))
@@ -114,6 +114,5 @@ public class GameManager : MonoBehaviour
 		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
 		HighScoreUpdated?.Invoke(_highScore);
 	}
-
 	#endregion
 }

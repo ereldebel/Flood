@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6476313805035877127}
   m_Layer: 0
   m_Name: Enemy Axis
-  m_TagString: Untagged
+  m_TagString: Enemy Axis
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,12 +59,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 20
+  dropSpeed: 0.5
   enemies:
   - {fileID: 4837999177250993350}
   - {fileID: 5470305408736733350}
   - {fileID: 5187978561496078949}
   enemyRotation: {fileID: 8119507236333249639}
-  dropSpeed: 0.5
 --- !u!1 &8119507236333249639
 GameObject:
   m_ObjectHideFlags: 0
