@@ -65,7 +65,7 @@ MonoBehaviour:
   - {fileID: 4837999177250993350}
   - {fileID: 5470305408736733350}
   - {fileID: 5187978561496078949}
-  enemyRotation: {fileID: 8119507236333249639}
+  enemyBatchLocation: {fileID: 9068014916450163488}
 --- !u!95 &892555242091088023
 Animator:
   serializedVersion: 3
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9068014916450163488}
   m_Layer: 0
-  m_Name: EnemyRotate
+  m_Name: Enemy Batch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -44,7 +44,7 @@ namespace Enemies
 			}
 			catch (InvalidOperationException)
 			{
-				enemyAxis = Instantiate(enemyAxisPrefab, startPos, quaternion.identity);
+				enemyAxis = Instantiate(enemyAxisPrefab, startPos, quaternion.identity, transform);
 			}
 
 			enemyAxis.GetComponent<EnemyAxis>().PositionEnemy(Random.Range(0f, 360f));

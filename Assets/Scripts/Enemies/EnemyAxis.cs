@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,12 +6,35 @@ namespace Enemies
 {
 	public class EnemyAxis : MonoBehaviour
 	{
+		#region Public Properties
+
+		public int RemainingEnemies
+		{
+			get => _remainingEnemies;
+			set
+			{
+				_remainingEnemies = value;
+				if (_remainingEnemies == 0)
+					gameObject.SetActive(false);
+			}
+		}
+
+		#endregion
+
 		#region Serialized Private Fields
 
 		[SerializeField] private float radius;
 		[SerializeField] private float dropSpeed = 1;
 		[SerializeField] private GameObject[] enemies;
-		[SerializeField] private GameObject enemyRotation;
+		[SerializeField] private Transform enemyBatchLocation;
+
+		#endregion
+
+		#region Private Fields
+
+		private Transform _transform;
+		private WaveManager _waveManager;
+		private int _remainingEnemies;
 
 		#endregion
 
@@ -22,20 +46,21 @@ namespace Enemies
 
 		#region Function Events
 
-		private void Update()
+		private void Awake()
 		{
-			if (!(transform.position.y < -5)) return;
-			// PositionEnemy(Random.Range(0, 360));
-			transform.rotation = Quaternion.identity;
-			gameObject.SetActive(false);
-			enemyRotation.transform.position = transform.position;
-			foreach (var enemy in enemies)
-				enemy.SetActive(true);
+			_transform = transform;
+			_waveManager = _transform.parent.GetComponent<WaveManager>();
+			enemyBatchLocation.position = _transform.position + Vector3.right * radius;
+		}
+
+		private void OnEnable()
+		{
+			_remainingEnemies = enemies.Length;
 		}
 
 		private void FixedUpdate()
 		{
-			transform.position += Vector3.down * Time.deltaTime * dropSpeed;
+			_transform.position += Vector3.down * Time.deltaTime * dropSpeed;
 		}
 
 		#endregion
@@ -49,10 +74,7 @@ namespace Enemies
 
 		public void PositionEnemy(float degree)
 		{
-			enemyRotation.transform.position += Vector3.right * radius;
-			foreach (var enemy in enemies)
-				enemy.SetActive(true);
-			transform.rotation = Quaternion.Euler(0, degree, 0);
+			_transform.rotation = Quaternion.Euler(0, degree, 0);
 		}
 
 		#endregion
@@ -61,6 +83,10 @@ namespace Enemies
 
 		private void OnDisable()
 		{
+			--_waveManager.NumberOfLivingBatches;
+			_transform.rotation = Quaternion.identity;
+			foreach (var enemy in enemies)
+				enemy.SetActive(true);
 			_enemyAxes.Push(gameObject);
 		}
 
