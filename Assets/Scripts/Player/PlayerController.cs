@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-	public class CameraController : MonoBehaviour
+	public class PlayerController : MonoBehaviour
 	{
 		#region Nested Classes
 
