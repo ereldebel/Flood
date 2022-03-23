@@ -5,6 +5,6 @@
 	/// </summary>
 	public interface IHittable
 	{
-		void TakeHit();
+		void TakeHit(bool killedByPlayer);
 	}
 }

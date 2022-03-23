@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using Enemies;
+using Environment;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,10 +9,11 @@ public class GameManager : MonoBehaviour
 {
 	#region Serialized Private Fields
 
-	[SerializeField] private WaveManager _waveManager;
-	
+	[SerializeField] private WaveManager waveManager;
+	[SerializeField] private float timeBetweenWaves = 3;
+
 	#endregion
-	
+
 	#region Private Fields
 
 	private int _points;
@@ -36,6 +39,8 @@ public class GameManager : MonoBehaviour
 	public static event Action<int> PointsUpdated;
 	public static event Action<int> HighScoreUpdated;
 
+	public static event Action<int> WaveCleared;
+
 	#endregion
 
 	#region Function Events
@@ -51,19 +56,15 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void Awake()
-	{
-		_shared = this;
-	}
-
 	private void Start()
 	{
+		_shared = this;
 		RestoreHighScore();
-		_waveManager.StartNextWave();
+		waveManager.StartNextWave();
 	}
 
 
-	private void OnDestroy()
+	private void OnDisable()
 	{
 		UpdateHighScore();
 	}
@@ -77,26 +78,26 @@ public class GameManager : MonoBehaviour
 		PointsUpdated?.Invoke(_shared._points += _shared._columns);
 	}
 
-	public static void GameOver()
-	{
-		SceneManager.LoadScene(0);
-	}
-
 	public static void ColumnDrowned()
 	{
 		if (--_shared._columns <= 0)
 			GameOver();
 	}
-	
-	public static void WaveCleared(int waveNumber)
+
+	public static void ClearedWave(int waveNumber)
 	{
-		print($"cleared wave number: {waveNumber}");
-		_shared._waveManager.StartNextWave();
+		WaveCleared?.Invoke(waveNumber);
+		_shared.StartCoroutine(StartNextWaveIn(_shared.timeBetweenWaves));
 	}
 
 	#endregion
 
 	#region Private Static Methods
+	
+	private static void GameOver()
+	{
+		SceneManager.LoadScene(0);
+	}
 
 	private static void UpdateHighScore()
 	{
@@ -112,5 +113,12 @@ public class GameManager : MonoBehaviour
 		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
 		HighScoreUpdated?.Invoke(_highScore);
 	}
+
+	private static IEnumerator StartNextWaveIn(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		_shared.waveManager.StartNextWave();
+	}
+
 	#endregion
 }

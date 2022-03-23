@@ -11,9 +11,10 @@ namespace Enemies
             _axis = transform.parent.parent.GetComponent<EnemyAxis>();
         }
         
-        public void TakeHit()
+        public void TakeHit(bool killedByPlayer)
         {
-            GameManager.EnemyKilled();
+            if (killedByPlayer)
+                GameManager.EnemyKilled();
             if (--_axis.RemainingEnemies > 0)
                 gameObject.SetActive(false);
         }

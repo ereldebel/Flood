@@ -15,7 +15,7 @@ namespace Enemies
 			{
 				_numberOfLivingBatches = value;
 				if (_numberOfLivingBatches == 0)
-					GameManager.WaveCleared(_waveNumber);
+					GameManager.ClearedWave(_waveNumber);
 			}
 		}
 
@@ -48,6 +48,7 @@ namespace Enemies
 		{
 			if (_numberOfBatchesToDeploy > 0 && Time.time >= _nextEnemyDeployment)
 			{
+				--_numberOfBatchesToDeploy;
 				_enemyGenerator.GenerateEnemy();
 				_nextEnemyDeployment = Time.time + deploymentInterval;
 			}
