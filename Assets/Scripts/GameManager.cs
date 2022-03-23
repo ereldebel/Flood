@@ -7,17 +7,14 @@ public class GameManager : MonoBehaviour
 {
 	#region Serialized Private Fields
 
-	[SerializeField] private EnemyGenerator enemyGenerator;
-
-	[SerializeField] private float waveInterval;
-
+	[SerializeField] private WaveManager _waveManager;
+	
 	#endregion
-
+	
 	#region Private Fields
 
 	private int _points;
 	private int _columns = 4;
-	private float _nextEnemyWave;
 
 	#endregion
 
@@ -45,12 +42,6 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Time.time >= _nextEnemyWave)
-		{
-			enemyGenerator.GenerateEnemy();
-			_nextEnemyWave = Time.time + waveInterval;
-		}
-
 		if (Input.GetKey(KeyCode.Escape))
 		{
 			Application.Quit();
@@ -68,6 +59,7 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		RestoreHighScore();
+		_waveManager.StartNextWave();
 	}
 
 
@@ -94,6 +86,12 @@ public class GameManager : MonoBehaviour
 	{
 		if (--_shared._columns <= 0)
 			GameOver();
+	}
+	
+	public static void WaveCleared(int waveNumber)
+	{
+		print($"cleared wave number: {waveNumber}");
+		_shared._waveManager.StartNextWave();
 	}
 
 	#endregion

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Player
 {
@@ -13,6 +14,8 @@ namespace Player
 		[SerializeField] private float shotVelocity = 10;
 		[SerializeField] private float lowestAngle = 90;
 		[SerializeField] private float highestAngle = 57;
+		[SerializeField] private float shotVariance = 0.1f;
+		[SerializeField] private Animator[] animators;
 
 		#endregion
 
@@ -21,6 +24,8 @@ namespace Player
 		private Transform _transform;
 		private float _gunTip;
 		private readonly Stack<GameObject> _bullets = new Stack<GameObject>();
+		private Vector3 _rotation;
+		private static readonly int ShootAnimation = Animator.StringToHash("Shoot");
 
 		#endregion
 
@@ -31,6 +36,7 @@ namespace Player
 			_transform = transform;
 			_gunTip = _transform.localScale.y / 2;
 			Bullet.SetStack(_bullets);
+			_rotation = _transform.localEulerAngles;
 		}
 
 		private void Update()
@@ -38,7 +44,7 @@ namespace Player
 			if (!Input.GetMouseButtonDown(0)) return;
 			var shootingDirection = _transform.up;
 			var shootingPosition = _transform.position + shootingDirection * _gunTip;
-			Shoot(shootingPosition, shootingDirection);
+			Shoot(shootingPosition, shootingDirection, _transform.right, transform.forward);
 		}
 
 		#endregion
@@ -47,25 +53,20 @@ namespace Player
 
 		public void ChangeAngleOfElevation(float change)
 		{
-			
-			var xRotation = _transform.localEulerAngles.x;
-			if (xRotation + change > lowestAngle)
-			{
-				var rotation = _transform.localEulerAngles;
-				rotation.x = lowestAngle;
-				_transform.localEulerAngles = rotation;
-				return;
-			}
-			if (xRotation + change < highestAngle)
-				change = highestAngle - xRotation;
-			transform.Rotate(Vector3.right, change);
+			if (_rotation.x + change > lowestAngle)
+				_rotation.x = lowestAngle;
+			else if (_rotation.x + change < highestAngle)
+				_rotation.x = highestAngle;
+			else
+				_rotation.x += change;
+			transform.localEulerAngles = _rotation;
 		}
 
 		#endregion
 
 		#region Private Methods
 
-		private void Shoot(Vector3 shootingPosition, Vector3 shootingDirection)
+		private void Shoot(Vector3 shootingPosition, Vector3 shootingDirection, Vector3 right, Vector3 down)
 		{
 			GameObject bullet;
 			try
@@ -79,7 +80,18 @@ namespace Player
 			}
 
 			bullet.transform.position = shootingPosition;
-			bullet.GetComponent<Rigidbody>().AddForce(shotVelocity * shootingDirection, ForceMode.Impulse);
+			var shootingVelocityVectorWithNoise = shotVelocity * shootingDirection + right * RandomGaussian(shotVariance) +
+			                                      Vector3.down * RandomGaussian(shotVariance);
+			bullet.GetComponent<Rigidbody>().AddForce(shootingVelocityVectorWithNoise, ForceMode.Impulse);
+			foreach (var animator in animators)
+				animator.SetTrigger(ShootAnimation);
+		}
+
+		private static float RandomGaussian(float variance)
+		{
+			float uniform1 = Random.value, uniform2 = Random.value;
+			var randStandardNormal = Mathf.Sqrt(-2f * Mathf.Log(uniform1)) * Mathf.Sin(2f * Mathf.PI * uniform2);
+			return randStandardNormal * variance;
 		}
 
 		#endregion
