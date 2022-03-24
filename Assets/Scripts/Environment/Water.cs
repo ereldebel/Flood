@@ -10,6 +10,7 @@ namespace Environment
 
 		[SerializeField] private float waterRiseTime = 5;
 		[SerializeField] private float waterRiseSpeed = 5;
+		[SerializeField] private float waterResetSpeed = 5;
 
 		#endregion
 
@@ -28,12 +29,13 @@ namespace Environment
 			_transform = transform;
 			_originalWaterHeight = _transform.position.y;
 			waterRiseSpeed *= Time.fixedDeltaTime;
+			waterResetSpeed *= Time.fixedDeltaTime;
 			GameManager.WaveCleared += ResetHeight;
 		}
 
 		private void OnTriggerEnter(Collider other)
 		{
-			other.GetComponent<IHittable>()?.TakeHit(false);
+			other.GetComponentInParent<IHittable>()?.TakeHit(false);
 			if (Time.time >= _currentRiseFinishTime)
 			{
 				_currentRiseFinishTime = Time.time + waterRiseTime;
@@ -78,7 +80,7 @@ namespace Environment
 			while (_transform.position.y > _originalWaterHeight)
 			{
 				var pos = transform.position;
-				pos.y -= waterRiseSpeed;
+				pos.y -= waterResetSpeed;
 				_transform.position = pos;
 				yield return new WaitForFixedUpdate();
 			}

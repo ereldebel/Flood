@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Environment
 {
-	public class ColumnTop : MonoBehaviour
+	public class IslandTrigger : MonoBehaviour
 	{
 		private void OnTriggerEnter(Collider other)
 		{
