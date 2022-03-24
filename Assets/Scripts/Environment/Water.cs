@@ -11,6 +11,11 @@ namespace Environment
 		[SerializeField] private float waterRiseTime = 5;
 		[SerializeField] private float waterRiseSpeed = 5;
 		[SerializeField] private float waterResetSpeed = 5;
+		[SerializeField] private GameObject floatingObjectPrefab;
+		[SerializeField] private Transform floatingObjectsParent;
+		[SerializeField] private int numberOfFloatingObjects = 20;
+		[SerializeField] private float minFloatingObjectsDistance = 60;
+		[SerializeField] private float maxFloatingObjectsDistance = 80;
 
 		#endregion
 
@@ -26,10 +31,8 @@ namespace Environment
 
 		private void Awake()
 		{
-			_transform = transform;
-			_originalWaterHeight = _transform.position.y;
-			waterRiseSpeed *= Time.fixedDeltaTime;
-			waterResetSpeed *= Time.fixedDeltaTime;
+			InitializeFields();
+			AddFloatingObjects();
 			GameManager.WaveCleared += ResetHeight;
 		}
 
@@ -54,6 +57,25 @@ namespace Environment
 		#endregion
 
 		#region Private Methods
+
+		private void AddFloatingObjects()
+		{
+			for (var i = 0; i < numberOfFloatingObjects; ++i)
+			{
+				var direction2D = Random.insideUnitCircle *
+				                  Random.Range(minFloatingObjectsDistance, maxFloatingObjectsDistance);
+				Instantiate(floatingObjectPrefab, new Vector3(direction2D.x, _transform.position.y, direction2D.y),
+					Random.rotation, floatingObjectsParent);
+			}
+		}
+
+		private void InitializeFields()
+		{
+			_transform = transform;
+			_originalWaterHeight = _transform.position.y;
+			waterRiseSpeed *= Time.fixedDeltaTime;
+			waterResetSpeed *= Time.fixedDeltaTime;
+		}
 
 		private void ResetHeight(int waveNumber)
 		{
