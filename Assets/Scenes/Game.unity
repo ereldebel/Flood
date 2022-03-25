@@ -1843,6 +1843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAxisPrefab:
   - {fileID: 2027298687838003572, guid: c9285539317540c4d83c9451423dfbb2, type: 3}
+  - {fileID: 1146559567440653252, guid: 4b30332e1e8bd4543841b4db4d9605b9, type: 3}
+  - {fileID: 5885486130404910915, guid: d9a79ad2d7ef6d54896aa728ed3b7806, type: 3}
   startPos: {x: 0, y: 27, z: 0}
 --- !u!4 &1568539959
 Transform:
