@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450830959108518511}
   m_LocalRotation: {x: -0.008817396, y: 0, z: -0, w: 0.99996114}
-  m_LocalPosition: {x: -0, y: 94.2377, z: 6.1785483}
+  m_LocalPosition: {x: -0, y: 0, z: 6.1785483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 698489556399619704}
@@ -123,7 +123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648307671676389834}
   m_LocalRotation: {x: 1, y: -0, z: 0, w: -6.123234e-17}
-  m_LocalPosition: {x: -0, y: 95.775055, z: 5.3134108}
+  m_LocalPosition: {x: -0, y: 1.53735, z: 5.3134108}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 698489556399619704}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3762240593912228998}
   m_Layer: 3
   m_Name: Enemy 2
-  m_TagString: Enemy 2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8529483175793678354}
   m_LocalRotation: {x: -0.008817396, y: 0, z: -0, w: 0.99996114}
-  m_LocalPosition: {x: -0, y: 94.2377, z: 4.474797}
+  m_LocalPosition: {x: -0, y: 0, z: 4.474797}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 698489556399619704}

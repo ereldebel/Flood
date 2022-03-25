@@ -38,10 +38,10 @@ namespace Environment
 
 		private void OnTriggerEnter(Collider other)
 		{
-			other.GetComponentInParent<IHittable>()?.TakeHit(false);
-			if (Time.time >= _currentRiseFinishTime)
+			var enemyID = other.GetComponentInParent<Enemy>()?.TakeHit(false);
+			if (Time.time >= _currentRiseFinishTime && enemyID != null)
 			{
-				_currentRiseFinishTime = Time.time + waterRiseTime;
+				_currentRiseFinishTime = Time.time + (int) enemyID * waterRiseTime;
 				StartCoroutine(RaiseWater());
 				return;
 			}
@@ -79,6 +79,7 @@ namespace Environment
 
 		private void ResetHeight(int waveNumber)
 		{
+			_currentRiseFinishTime = Time.time;
 			StartCoroutine(ResetWaterHeight());
 		}
 

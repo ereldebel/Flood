@@ -33,7 +33,7 @@ namespace Player
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			collision.gameObject.GetComponentInParent<IHittable>()?.TakeHit(true);
+			collision.gameObject.GetComponentInParent<Enemy>()?.TakeHit(true);
 			gameObject.SetActive(false);
 		}
 
