@@ -73,9 +73,9 @@ public class GameManager : MonoBehaviour
 
 	#region Public Static Methods
 
-	public static void EnemyKilled()
+	public static void EnemyKilled(int type)
 	{
-		PointsUpdated?.Invoke(_shared._points += _shared._columns);
+		PointsUpdated?.Invoke(_shared._points += (_shared._columns * type));
 	}
 
 	public static void ColumnDrowned()

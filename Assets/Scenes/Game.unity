@@ -1841,7 +1841,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41029921e8d1114c801708631965301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAxisPrefab: {fileID: 2027298687838003572, guid: c9285539317540c4d83c9451423dfbb2, type: 3}
+  enemyAxisPrefab:
+  - {fileID: 2027298687838003572, guid: c9285539317540c4d83c9451423dfbb2, type: 3}
   startPos: {x: 0, y: 27, z: 0}
 --- !u!4 &1568539959
 Transform:

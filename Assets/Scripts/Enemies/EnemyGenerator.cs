@@ -11,7 +11,7 @@ namespace Enemies
 	{
 		#region Serialized Private Fields
 
-		[SerializeField] private GameObject enemyAxisPrefab;
+		[SerializeField] private GameObject[] enemyAxisPrefab;
 		[SerializeField] private Vector3 startPos;
 
 		#endregion
@@ -44,7 +44,9 @@ namespace Enemies
 			}
 			catch (InvalidOperationException)
 			{
-				enemyAxis = Instantiate(enemyAxisPrefab, startPos, quaternion.identity, transform);
+				int index = Random.Range(0, enemyAxisPrefab.Length);
+				var newEnemy = enemyAxisPrefab[index];
+				enemyAxis = Instantiate(newEnemy, startPos, quaternion.identity, transform);
 			}
 
 			enemyAxis.GetComponent<EnemyAxis>().PositionEnemy(Random.Range(0f, 360f));
