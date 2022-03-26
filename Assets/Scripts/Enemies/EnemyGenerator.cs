@@ -18,7 +18,7 @@ namespace Enemies
 
 		#region Private Fields
 
-		private Stack<GameObject> _enemyAxes;
+		private Stack<GameObject> _enemyAxes = new Stack<GameObject>();
 
 		#endregion
 
@@ -26,7 +26,7 @@ namespace Enemies
 
 		private void Awake()
 		{
-			_enemyAxes = EnemyAxis.GetStack();
+			EnemyAxis.SetStack(_enemyAxes);
 		}
 
 		#endregion
