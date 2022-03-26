@@ -23,7 +23,7 @@ namespace Player
 
 		private Transform _transform;
 		private float _gunTip;
-		private readonly Stack<GameObject> _bullets = new Stack<GameObject>();
+		private Stack<GameObject> _bullets;
 		private Vector3 _rotation;
 		private static readonly int ShootAnimation = Animator.StringToHash("Shoot");
 
@@ -35,7 +35,7 @@ namespace Player
 		{
 			_transform = transform;
 			_gunTip = _transform.localScale.y / 2;
-			Bullet.SetStack(_bullets);
+			_bullets = Bullet.GetBulletStack();
 			_rotation = _transform.localEulerAngles;
 		}
 

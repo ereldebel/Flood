@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 namespace UI
 {
-	public class UIObserver : MonoBehaviour
+	public class ScoreObserver : MonoBehaviour
 	{
 		#region Serialized Fields
 

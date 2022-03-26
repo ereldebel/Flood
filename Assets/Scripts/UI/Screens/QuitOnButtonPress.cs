@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Screens
+namespace UI.Screens
 {
 	public class QuitOnButtonPress : MonoBehaviour
 	{

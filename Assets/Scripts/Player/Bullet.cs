@@ -14,7 +14,7 @@ namespace Player
 
 		#region Private Static Fields
 
-		private static Stack<GameObject> _bullets;
+		private static readonly Stack<GameObject> Bullets = new Stack<GameObject>();
 
 		#endregion
 
@@ -46,16 +46,16 @@ namespace Player
 		private void OnDisable()
 		{
 			_rigidbody.velocity = Vector3.zero;
-			_bullets.Push(gameObject);
+			Bullets.Push(gameObject);
 		}
 
 		#endregion
 
 		#region Public Methods
 
-		public static void SetStack(Stack<GameObject> stack)
+		public static Stack<GameObject> GetBulletStack()
 		{
-			_bullets = stack;
+			return Bullets;
 		}
 
 		#endregion

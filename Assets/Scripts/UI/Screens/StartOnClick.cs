@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Screens
+namespace UI.Screens
 {
 	public class StartOnClick : MonoBehaviour
 	{

@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Screens
+namespace UI.Screens
 {
 	public class ShowScoresOnGameOver : MonoBehaviour
 	{
