@@ -990,11 +990,11 @@ RectTransform:
   m_Father: {fileID: 1266256196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 16, y: -1009}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 16, y: 21.000061}
   m_SizeDelta: {x: 400, y: 50}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1019602113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1486,11 +1486,11 @@ RectTransform:
   m_Father: {fileID: 1266256196}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 153.09998, y: -1009}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 153.10004, y: 21.000061}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1366183926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,7 +1766,6 @@ MonoBehaviour:
   animators:
   - {fileID: 1051256274690978287}
   - {fileID: 429705381}
-  particleSystem: {fileID: 0}
 --- !u!1 &1568539957
 GameObject:
   m_ObjectHideFlags: 0
