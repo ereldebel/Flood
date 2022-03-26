@@ -17,7 +17,12 @@ namespace Enemies
         public int TakeHit(bool killedByPlayer)
         {
             if (killedByPlayer)
+            {
                 GameManager.EnemyKilled(type);
+                AudioManager.EnemyHit();
+            }
+            else
+                AudioManager.EnemyReachedWater();
             if (--_axis.RemainingEnemies > 0)
                 gameObject.SetActive(false);
             return type;

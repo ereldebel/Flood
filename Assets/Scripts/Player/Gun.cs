@@ -44,7 +44,10 @@ namespace Player
 			if (!Input.GetMouseButtonDown(0)) return;
 			var shootingDirection = _transform.up;
 			var shootingPosition = _transform.position + shootingDirection * _gunTip;
-			Shoot(shootingPosition, shootingDirection, _transform.right, transform.forward);
+			ProjectBullet(shootingPosition, shootingDirection, _transform.right, transform.forward);
+			foreach (var animator in animators)
+				animator.SetTrigger(ShootAnimation);
+			AudioManager.GunShot();
 		}
 
 		#endregion
@@ -66,7 +69,7 @@ namespace Player
 
 		#region Private Methods
 
-		private void Shoot(Vector3 shootingPosition, Vector3 shootingDirection, Vector3 right, Vector3 down)
+		private void ProjectBullet(Vector3 shootingPosition, Vector3 shootingDirection, Vector3 right, Vector3 down)
 		{
 			GameObject bullet;
 			try
@@ -80,11 +83,10 @@ namespace Player
 			}
 
 			bullet.transform.position = shootingPosition;
-			var shootingVelocityVectorWithNoise = shotVelocity * shootingDirection + right * RandomGaussian(shotVariance) +
-			                                      Vector3.down * RandomGaussian(shotVariance);
+			var shootingVelocityVectorWithNoise =
+				shotVelocity * shootingDirection + right * RandomGaussian(shotVariance) +
+				down * RandomGaussian(shotVariance);
 			bullet.GetComponent<Rigidbody>().AddForce(shootingVelocityVectorWithNoise, ForceMode.Impulse);
-			foreach (var animator in animators)
-				animator.SetTrigger(ShootAnimation);
 		}
 
 		private static float RandomGaussian(float variance)
