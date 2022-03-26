@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 	#region Private Fields
 
-	private int _points;
+	private int _score;
 
 	#endregion
 
@@ -29,15 +29,15 @@ public class GameManager : MonoBehaviour
 
 	#region Constants
 
-	private const string HighScorePref = "High Score";
+	public const string HighScorePref = "High Score";
+	public const string CurrentScorePref = "Current Score";
+	private const int GameOverScene = 2;
 
 	#endregion
 
 	#region Public C# Events
 
-	public static event Action<int> PointsUpdated;
-	public static event Action<int> HighScoreUpdated;
-
+	public static event Action<int> ScoreUpdated;
 	public static event Action<int> WaveCleared;
 
 	#endregion
@@ -46,26 +46,21 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKey(KeyCode.Escape))
-		{
-			Application.Quit();
-#if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false;
-#endif
-		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+			GameOver();
 	}
 
 	private void Start()
 	{
 		_shared = this;
-		RestoreHighScore();
+		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
 		waveManager.StartNextWave();
 	}
 
 
 	private void OnDisable()
 	{
-		UpdateHighScore();
+		UpdateScores();
 	}
 
 	#endregion
@@ -74,7 +69,7 @@ public class GameManager : MonoBehaviour
 
 	public static void EnemyKilled(int type)
 	{
-		PointsUpdated?.Invoke(_shared._points += (_shared.columns * type));
+		ScoreUpdated?.Invoke(_shared._score += (_shared.columns * type));
 	}
 
 	public static void ColumnDrowned()
@@ -95,22 +90,18 @@ public class GameManager : MonoBehaviour
 	
 	private static void GameOver()
 	{
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(GameOverScene);
 	}
 
-	private static void UpdateHighScore()
+	private static void UpdateScores()
 	{
-		if (_shared._points <= _highScore) return;
-		_highScore = _shared._points;
-		HighScoreUpdated?.Invoke(_highScore);
-		PlayerPrefs.SetInt(HighScorePref, _highScore);
+		PlayerPrefs.SetInt(CurrentScorePref, _shared._score);
+		if (_shared._score > _highScore)
+		{
+			_highScore = _shared._score;
+			PlayerPrefs.SetInt(HighScorePref, _highScore);
+		}
 		PlayerPrefs.Save();
-	}
-
-	private static void RestoreHighScore()
-	{
-		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
-		HighScoreUpdated?.Invoke(_highScore);
 	}
 
 	private static IEnumerator StartNextWaveIn(float seconds)

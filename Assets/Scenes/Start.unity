@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 1161315429}
   - component: {fileID: 1161315428}
   - component: {fileID: 1161315427}
+  - component: {fileID: 1161315432}
+  - component: {fileID: 1161315431}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -223,6 +225,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1161315431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161315426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cacd417e6d3407fbcc1f30c63988883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1161315432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161315426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f69bf3934d4a5ab7e67e6421ebf4c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quitButton: 27
 --- !u!1 &1419123970
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +541,7 @@ GameObject:
   - component: {fileID: 1951246380}
   - component: {fileID: 1951246379}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Click To Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,10 +561,10 @@ RectTransform:
   m_Father: {fileID: 1161315430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -600}
-  m_SizeDelta: {x: 729.8, y: 50}
+  m_AnchorMin: {x: 0.5, y: 0.25}
+  m_AnchorMax: {x: 0.5, y: 0.25}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951246379
 MonoBehaviour:
@@ -561,8 +588,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Click anywhere to start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c79becf265b788847ae100684b8ed8d8, type: 2}
+  m_sharedMaterial: {fileID: -6861568180234805289, guid: c79becf265b788847ae100684b8ed8d8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -593,7 +620,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

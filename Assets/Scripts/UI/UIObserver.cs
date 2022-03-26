@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -7,7 +8,7 @@ namespace UI
 	{
 		#region Serialized Fields
 
-		[SerializeField] private TextMeshProUGUI pointsUI, highScoreUI;
+		private TextMeshProUGUI _scoreUI;
 
 		#endregion
 
@@ -15,28 +16,22 @@ namespace UI
 
 		private void Awake()
 		{
-			GameManager.PointsUpdated += UpdatePoints;
-			GameManager.HighScoreUpdated += UpdateHighScore;
+			_scoreUI = GetComponent<TextMeshProUGUI>();
+			GameManager.ScoreUpdated += UpdateScore;
 		}
 
 		private void OnDestroy()
 		{
-			GameManager.PointsUpdated -= UpdatePoints;
-			GameManager.HighScoreUpdated -= UpdateHighScore;
+			GameManager.ScoreUpdated -= UpdateScore;
 		}
 
 		#endregion
 
 		#region Private Methods
 
-		private void UpdatePoints(int points)
+		private void UpdateScore(int score)
 		{
-			pointsUI.text = points.ToString();
-		}
-
-		private void UpdateHighScore(int highScore)
-		{
-			highScoreUI.text = highScore.ToString();
+			_scoreUI.text = score.ToString();
 		}
 
 		#endregion
