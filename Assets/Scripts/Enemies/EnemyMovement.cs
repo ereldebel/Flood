@@ -46,6 +46,6 @@ public class EnemyMovement : MonoBehaviour
     
     private void MovementThree()
     {
-        transform.rotation = Quaternion.Euler((float)Math.Cos(Time.time) * speed*5, 0, 0);
+        transform.localRotation = Quaternion.Euler((float)Math.Cos(Time.time) * speed*5, 0, 0);
     }
 }
