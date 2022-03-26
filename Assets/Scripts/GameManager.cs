@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Enemies;
-using Environment;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,13 +10,13 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField] private WaveManager waveManager;
 	[SerializeField] private float timeBetweenWaves = 3;
+	[SerializeField] private int columns = 5;
 
 	#endregion
 
 	#region Private Fields
 
 	private int _points;
-	private int _columns = 4;
 
 	#endregion
 
@@ -75,12 +74,12 @@ public class GameManager : MonoBehaviour
 
 	public static void EnemyKilled(int type)
 	{
-		PointsUpdated?.Invoke(_shared._points += (_shared._columns * type));
+		PointsUpdated?.Invoke(_shared._points += (_shared.columns * type));
 	}
 
 	public static void ColumnDrowned()
 	{
-		if (--_shared._columns <= 0)
+		if (--_shared.columns <= 0)
 			GameOver();
 	}
 

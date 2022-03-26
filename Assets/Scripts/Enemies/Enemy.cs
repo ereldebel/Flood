@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemies
 {
-    public class Enemy : MonoBehaviour, IHittable
+    public class Enemy : MonoBehaviour
     {
         private EnemyAxis _axis;
 
@@ -14,17 +14,13 @@ namespace Enemies
             _axis = transform.parent.parent.GetComponent<EnemyAxis>();
         }
 
-        private void Start()
-        {
-            print("Enemy type " + type + " " + transform.position);
-        }
-
-        public void TakeHit(bool killedByPlayer)
+        public int TakeHit(bool killedByPlayer)
         {
             if (killedByPlayer)
                 GameManager.EnemyKilled(type);
             if (--_axis.RemainingEnemies > 0)
                 gameObject.SetActive(false);
+            return type;
         }
     }
 }
