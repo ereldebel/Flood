@@ -126,3 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 70
+  explode: {fileID: 8402346401423099041, guid: c616aa84b082d764aabb342b9209b99a, type: 3}
