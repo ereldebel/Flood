@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 40
-  dropSpeed: 0.5
+  dropSpeed: 0.64
   enemies:
   - {fileID: 2403741177842557477}
   - {fileID: 869219090617072080}

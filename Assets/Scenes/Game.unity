@@ -851,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveManager: {fileID: 1568539960}
-  timeBetweenWaves: 4
+  timeBetweenWaves: 0
   columns: 5
 --- !u!4 &683536919
 Transform:
@@ -1215,7 +1215,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 110, y: 1, z: 110}
+  m_Size: {x: 200, y: 1, z: 200}
   m_Center: {x: 0, y: -1.8, z: 0}
 --- !u!54 &1069411224
 Rigidbody:
@@ -1958,6 +1958,7 @@ MonoBehaviour:
   - {fileID: 1146559567440653252, guid: 4b30332e1e8bd4543841b4db4d9605b9, type: 3}
   - {fileID: 5885486130404910915, guid: d9a79ad2d7ef6d54896aa728ed3b7806, type: 3}
   startPos: {x: 0, y: 27, z: 0}
+  angleBufferBetweenConsecutiveBatches: 40
 --- !u!4 &1568539959
 Transform:
   m_ObjectHideFlags: 0

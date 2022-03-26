@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 
@@ -9,16 +10,21 @@ namespace Enemies
 {
 	public class EnemyGenerator : MonoBehaviour
 	{
+		private const int WholeCircle = 360;
+
 		#region Serialized Private Fields
 
 		[SerializeField] private GameObject[] enemyAxisPrefab;
 		[SerializeField] private Vector3 startPos;
+		[SerializeField] private float angleBufferBetweenConsecutiveBatches = 40;
 
 		#endregion
 
 		#region Private Fields
 
-		private Stack<GameObject> _enemyAxes = new Stack<GameObject>();
+		private readonly Stack<GameObject> _enemyAxes = new Stack<GameObject>();
+		private float _angleBuffer;
+		private float _prevEnemyAngle = 0;
 
 		#endregion
 
@@ -27,6 +33,7 @@ namespace Enemies
 		private void Awake()
 		{
 			EnemyAxis.SetStack(_enemyAxes);
+			_angleBuffer = angleBufferBetweenConsecutiveBatches / 2;
 		}
 
 		#endregion
@@ -44,12 +51,16 @@ namespace Enemies
 			}
 			catch (InvalidOperationException)
 			{
-				int index = Random.Range(0, enemyAxisPrefab.Length);
-				var newEnemy = enemyAxisPrefab[index];
+				var enemyTypeIndex = Random.Range(0, enemyAxisPrefab.Length);
+				var newEnemy = enemyAxisPrefab[enemyTypeIndex];
 				enemyAxis = Instantiate(newEnemy, startPos, quaternion.identity, transform);
 			}
 
-			enemyAxis.GetComponent<EnemyAxis>().PositionEnemy(Random.Range(0f, 360f));
+			var enemyAngle =
+				Random.Range(_prevEnemyAngle + _angleBuffer, _prevEnemyAngle + WholeCircle - _angleBuffer) %
+				WholeCircle;
+			enemyAxis.GetComponent<EnemyAxis>().PositionEnemy(enemyAngle);
+			_prevEnemyAngle = enemyAngle;
 		}
 
 		#endregion
