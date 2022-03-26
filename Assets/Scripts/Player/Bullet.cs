@@ -16,7 +16,7 @@ namespace Player
 
 		#region Private Static Fields
 
-		private static  Stack<GameObject> bullets;
+		private static  Stack<GameObject> _bullets;
 
 		#endregion
 
@@ -49,7 +49,7 @@ namespace Player
 		private void OnDisable()
 		{
 			_rigidbody.velocity = Vector3.zero;
-			bullets.Push(gameObject);
+			_bullets.Push(gameObject);
 		}
 
 		#endregion
@@ -58,7 +58,7 @@ namespace Player
 
 		public static void SetBulletStack(Stack<GameObject> stack)
 		{
-			bullets = stack;
+			_bullets = stack;
 		}
 
 		#endregion
