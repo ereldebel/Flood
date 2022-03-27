@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Enemies
@@ -29,6 +30,8 @@ namespace Enemies
 
 		#region Private Fields
 
+
+		private float _currInterval;
 		private EnemyGenerator _enemyGenerator;
 		private int _waveNumber = 0;
 		private int _numberOfBatchesToDeploy, _numberOfLivingBatches;
@@ -40,6 +43,7 @@ namespace Enemies
 
 		private void Awake()
 		{
+			_currInterval = 1.1f * deploymentInterval;
 			_enemyGenerator = GetComponent<EnemyGenerator>();
 		}
 
@@ -49,7 +53,7 @@ namespace Enemies
 			{
 				--_numberOfBatchesToDeploy;
 				_enemyGenerator.GenerateEnemy();
-				_nextEnemyDeployment = Time.time + deploymentInterval;
+				_nextEnemyDeployment = Time.time + _currInterval;
 			}
 		}
 
@@ -60,6 +64,7 @@ namespace Enemies
 		public void StartNextWave()
 		{
 			_numberOfBatchesToDeploy = _numberOfLivingBatches = NumberOfBatchesInWave(++_waveNumber);
+			_currInterval = Math.Max(deploymentInterval * 0.5f, _currInterval * 0.9f);
 		}
 
 		#endregion
