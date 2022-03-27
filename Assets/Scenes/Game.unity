@@ -734,7 +734,7 @@ MonoBehaviour:
   waveManager: {fileID: 1568539960}
   timeBetweenWaves: 0
   columns: 5
-  explode: {fileID: 0}
+  explode: {fileID: 8402346401423099041, guid: c616aa84b082d764aabb342b9209b99a, type: 3}
 --- !u!4 &683536919
 Transform:
   m_ObjectHideFlags: 0
