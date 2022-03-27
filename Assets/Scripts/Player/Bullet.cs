@@ -9,7 +9,7 @@ namespace Player
 		#region Serialized Private Fields
 
 		[SerializeField] private float maxDistance = 30;
-		
+
 		#endregion
 
 		#region Private Static Fields
