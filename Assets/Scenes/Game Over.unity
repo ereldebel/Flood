@@ -590,7 +590,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Current Score: \n  High Score: "
+  m_text: "Current Score: \n High Score: "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c79becf265b788847ae100684b8ed8d8, type: 2}
   m_sharedMaterial: {fileID: -6861568180234805289, guid: c79becf265b788847ae100684b8ed8d8, type: 2}
