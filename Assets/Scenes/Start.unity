@@ -794,6 +794,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7098872835791423066, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_Name
+      value: Enemy 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7098872835791423066, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -6668250442650181435, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -881,6 +889,22 @@ PrefabInstance:
     - target: {fileID: 5581313741023691624, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
       propertyPath: m_LocalPosition.z
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218013431799993484, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_Name
+      value: Enemy 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218013431799993484, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565412058246623116, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_Name
+      value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565412058246623116, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8001142559101487229, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
       propertyPath: m_CastShadows
@@ -1728,10 +1752,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
