@@ -47,7 +47,7 @@ namespace Player
 		private void OnDisable()
 		{
 			_rigidbody.velocity = Vector3.zero;
-			_bullets.Push(gameObject);
+			_bullets?.Push(gameObject);
 		}
 
 		#endregion

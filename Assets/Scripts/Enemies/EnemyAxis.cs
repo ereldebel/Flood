@@ -39,7 +39,7 @@ namespace Enemies
 
 		#region Private Static Fields
 
-		private static Stack<GameObject> enemyAxes;
+		private static Stack<GameObject> _enemyAxes;
 			
 		#endregion
 
@@ -68,7 +68,7 @@ namespace Enemies
 
 		public static void SetStack(Stack<GameObject> stack)
 		{
-			enemyAxes = stack;
+			_enemyAxes = stack;
 		}
 
 		public void PositionEnemy(float degree)
@@ -86,7 +86,7 @@ namespace Enemies
 			_transform.rotation = Quaternion.identity;
 			foreach (var enemy in enemies)
 				enemy.SetActive(true);
-			enemyAxes.Push(gameObject);
+			_enemyAxes?.Push(gameObject);
 		}
 
 		#endregion
