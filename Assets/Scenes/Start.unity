@@ -257,6 +257,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219559251}
   m_CullTransparentMesh: 1
+--- !u!1 &956728467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 27e87bd732f7ee64b897e6c071f08168, type: 3}
+  m_PrefabInstance: {fileID: 1186121299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &999396466
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +399,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999396466}
   m_CullTransparentMesh: 1
+--- !u!1 &1098143302 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
+  m_PrefabInstance: {fileID: 1312288202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1151789899
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 27e87bd732f7ee64b897e6c071f08168, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27e87bd732f7ee64b897e6c071f08168, type: 3}
@@ -842,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2746256875937312339, guid: a523b2a74b361c8439a4bd0fadccf281, type: 3}
       propertyPath: m_CastShadows
@@ -898,6 +908,7 @@ GameObject:
   - component: {fileID: 1378421287}
   - component: {fileID: 1378421289}
   - component: {fileID: 1378421288}
+  - component: {fileID: 1378421290}
   m_Layer: 5
   m_Name: How to play
   m_TagString: Untagged
@@ -922,7 +933,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -331.7}
-  m_SizeDelta: {x: 415, y: 50}
+  m_SizeDelta: {x: 415, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378421288
 MonoBehaviour:
@@ -1021,6 +1032,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378421286}
   m_CullTransparentMesh: 1
+--- !u!114 &1378421290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378421286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4289ec37a8f46a7489c0266b3abd2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backGround: {fileID: 956728467}
+  enemies: {fileID: 1098143302}
 --- !u!1 &1419123970
 GameObject:
   m_ObjectHideFlags: 0
