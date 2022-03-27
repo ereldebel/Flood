@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
 	private int _score;
 
-	private LinkedList<GameObject> _explosions = new LinkedList<GameObject>();
+	private readonly Stack<GameObject> _explosions = new Stack<GameObject>();
 
 	#endregion
 
@@ -93,13 +93,13 @@ public class GameManager : MonoBehaviour
 
 	public static void SetExplosion(Vector3 pos)
 	{
-		if (_shared._explosions.Count > 0)
+		try
 		{
-			var exp = _shared._explosions.Last.Value;
+			var exp = _shared._explosions.Pop();
 			exp.transform.position = pos;
 			exp.SetActive(true);
 		}
-		else
+		catch (InvalidOperationException)
 		{
 			Instantiate(_shared.explode, pos, Quaternion.identity);
 		}
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
 	public static void AddExplosion(GameObject exp)
 	{
-		_shared._explosions.AddFirst(exp);
+		_shared._explosions.Push(exp);
 	}
 
 	#endregion

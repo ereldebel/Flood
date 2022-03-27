@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -52,7 +51,7 @@ namespace Enemies
 			{
 				var enemyTypeIndex = Random.Range(0, enemyAxisPrefab.Length);
 				var newEnemy = enemyAxisPrefab[enemyTypeIndex];
-				enemyAxis = Instantiate(newEnemy, startPos, quaternion.identity, transform);
+				enemyAxis = Instantiate(newEnemy, startPos, Quaternion.identity, transform);
 			}
 
 			var enemyAngle =

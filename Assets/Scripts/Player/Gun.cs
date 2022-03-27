@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -79,7 +78,7 @@ namespace Player
 			}
 			catch (InvalidOperationException)
 			{
-				bullet = Instantiate(bulletPrefab, shootingPosition, quaternion.identity);
+				bullet = Instantiate(bulletPrefab, shootingPosition, Quaternion.identity);
 			}
 
 			bullet.transform.position = shootingPosition;

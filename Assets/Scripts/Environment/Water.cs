@@ -16,6 +16,7 @@ namespace Environment
 		[SerializeField] private int numberOfFloatingObjects = 20;
 		[SerializeField] private float minFloatingObjectsDistance = 60;
 		[SerializeField] private float maxFloatingObjectsDistance = 80;
+		[SerializeField] private float floatHeight = 1;
 
 		#endregion
 
@@ -64,7 +65,8 @@ namespace Environment
 			{
 				var direction2D = Random.insideUnitCircle *
 				                  Random.Range(minFloatingObjectsDistance, maxFloatingObjectsDistance);
-				Instantiate(floatingObjectPrefab, new Vector3(direction2D.x, _transform.position.y, direction2D.y),
+				Instantiate(floatingObjectPrefab,
+					new Vector3(direction2D.x, _transform.position.y + floatHeight, direction2D.y),
 					Random.rotation, floatingObjectsParent);
 			}
 		}
