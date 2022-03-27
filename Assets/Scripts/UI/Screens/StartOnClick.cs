@@ -10,8 +10,8 @@ namespace UI.Screens
 		
 		private void Awake()
 		{
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+			// Cursor.lockState = CursorLockMode.Locked;
+			// Cursor.visible = false;
 		}
 		
 		private void Update()
