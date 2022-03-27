@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
+  m_IndirectSpecularColor: {r: 0.28502658, g: 0.37139305, b: 0.49600944, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -508,7 +508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.9
+      value: -23.1
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -799,7 +799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.6
+      value: -25.2
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1003,7 +1003,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 200, y: 1, z: 200}
+  m_Size: {x: 300, y: 1, z: 300}
   m_Center: {x: 0, y: -1.8, z: 0}
 --- !u!54 &1069411224
 Rigidbody:
@@ -1562,7 +1562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -24.5
+      value: -27.7
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3971,7 +3971,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 121
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4019,7 +4019,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 337
+    m_Bits: 511
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -4038,7 +4038,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34570
+  m_Name: pb_Mesh21222
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4213,7 +4213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.9
+      value: -21.1
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4270,7 +4270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.52
+      value: -22.72
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z

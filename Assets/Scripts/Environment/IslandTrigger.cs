@@ -7,7 +7,7 @@ namespace Environment
 		private void OnTriggerEnter(Collider other)
 		{
 			GameManager.ColumnDrowned();
-			transform.parent.gameObject.SetActive(false);
+			gameObject.SetActive(false);
 		}
 	}
 }
