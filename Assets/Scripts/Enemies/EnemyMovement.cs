@@ -29,7 +29,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        transform.rotation = Quaternion.identity;
+        transform.localRotation = Quaternion.identity;
         _originalX = transform.localPosition.x;
         _originalY = transform.localPosition.y;
     }
