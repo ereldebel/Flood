@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
 	{
 		if (_shared._explosions.Count > 0)
 		{
-			print("hello");
 			var exp = _shared._explosions.Last.Value;
 			exp.transform.position = pos;
 			exp.SetActive(true);

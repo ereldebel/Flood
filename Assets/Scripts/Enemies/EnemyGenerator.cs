@@ -17,7 +17,7 @@ namespace Enemies
 		[SerializeField] private GameObject[] enemyAxisPrefab;
 		[SerializeField] private Vector3 startPos;
 		[SerializeField] private float angleBufferBetweenConsecutiveBatches = 40;
-
+		
 		#endregion
 
 		#region Private Fields
