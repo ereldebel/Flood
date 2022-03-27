@@ -4,7 +4,7 @@ public class AudioManager : MonoBehaviour
 {
 	#region Serialized fields
 
-	[SerializeField, Tooltip("Clips by index:\n0\tGun Shot\n1\tEnemy Hit\n2\tEnemy Reached Water\n3\tGame Over")]
+	[SerializeField, Tooltip("Clips by index:\n0\tGun Shot\n1\tEnemy Hit\n2\tEnemy Reached Water\n3\tGame Over\n4\tGame Started\n5\tWave Cleared")]
 	private AudioClip[] clips;
 
 	#endregion
@@ -42,6 +42,10 @@ public class AudioManager : MonoBehaviour
 	public static void EnemyReachedWater() => PlayClipByIndex(2);
 
 	public static void GameOver() => PlayClipByIndex(3);
+	
+	public static void GameStarted() => PlayClipByIndex(4);
+
+	public static void WaveCleared() => PlayClipByIndex(5);
 
 	#endregion
 

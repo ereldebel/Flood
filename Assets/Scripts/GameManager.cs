@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 		_shared = this;
 		_highScore = PlayerPrefs.GetInt(HighScorePref, 0);
 		waveManager.StartNextWave();
+		AudioManager.GameStarted();
 	}
 
 
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
 	public static void ClearedWave(int waveNumber)
 	{
 		WaveCleared?.Invoke(waveNumber);
+		AudioManager.WaveCleared();
 		_shared.StartCoroutine(StartNextWaveIn(_shared.timeBetweenWaves));
 	}
 
@@ -114,6 +116,7 @@ public class GameManager : MonoBehaviour
 	
 	private static void GameOver()
 	{
+		AudioManager.GameOver();
 		SceneManager.LoadScene(GameOverScene);
 	}
 
