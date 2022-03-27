@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,12 +12,16 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private WaveManager waveManager;
 	[SerializeField] private float timeBetweenWaves = 3;
 	[SerializeField] private int columns = 5;
+	
+	[SerializeField] private GameObject explode;
 
 	#endregion
 
 	#region Private Fields
 
 	private int _score;
+
+	private LinkedList<GameObject> _explosions = new LinkedList<GameObject>();
 
 	#endregion
 
@@ -82,6 +87,26 @@ public class GameManager : MonoBehaviour
 	{
 		WaveCleared?.Invoke(waveNumber);
 		_shared.StartCoroutine(StartNextWaveIn(_shared.timeBetweenWaves));
+	}
+
+	public static void SetExplosion(Vector3 pos)
+	{
+		if (_shared._explosions.Count > 0)
+		{
+			print("hello");
+			var exp = _shared._explosions.Last.Value;
+			exp.transform.position = pos;
+			exp.SetActive(true);
+		}
+		else
+		{
+			Instantiate(_shared.explode, pos, Quaternion.identity);
+		}
+	}
+
+	public static void AddExplosion(GameObject exp)
+	{
+		_shared._explosions.AddFirst(exp);
 	}
 
 	#endregion

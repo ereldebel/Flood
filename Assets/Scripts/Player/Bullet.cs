@@ -9,8 +9,6 @@ namespace Player
 		#region Serialized Private Fields
 
 		[SerializeField] private float maxDistance = 30;
-
-		[SerializeField] private GameObject explode;
 		
 		#endregion
 
@@ -36,7 +34,7 @@ namespace Player
 		private void OnCollisionEnter(Collision collision)
 		{
 			collision.gameObject.GetComponentInParent<Enemy>()?.TakeHit(true);
-			Instantiate(explode, transform.position, Quaternion.identity);
+			GameManager.SetExplosion(transform.position);
 			gameObject.SetActive(false);
 		}
 
