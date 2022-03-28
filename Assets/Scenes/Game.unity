@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterRiseTime: 1
-  waterRiseSpeed: 0.5
+  waterRiseSpeed: 0.7
   waterResetSpeed: 2
   floatingObjectPrefab: {fileID: 693536964261376458, guid: 8f92bd4606c41404d863e8fb31a32f0c, type: 3}
   floatingObjectsParent: {fileID: 1983385502}
@@ -1569,6 +1569,30 @@ Transform:
   m_Father: {fileID: 1069411226}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1498806413 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3330128584294154608, guid: e503c853975743b4590953158e8be90d, type: 3}
+  m_PrefabInstance: {fileID: 1542744411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1498806418
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498806413}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab0a1feb3560c794b97303bc2781925e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1542744411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1586,7 +1610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -27.7
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 2701366895957384138, guid: e503c853975743b4590953158e8be90d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1714,7 +1738,7 @@ MonoBehaviour:
   - {fileID: 1146559567440653252, guid: 4b30332e1e8bd4543841b4db4d9605b9, type: 3}
   - {fileID: 5885486130404910915, guid: d9a79ad2d7ef6d54896aa728ed3b7806, type: 3}
   startPos: {x: 0, y: 27, z: 0}
-  angleBufferBetweenConsecutiveBatches: 40
+  angleBufferBetweenConsecutiveBatches: 60
 --- !u!4 &1568539959
 Transform:
   m_ObjectHideFlags: 0
@@ -1741,7 +1765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9305fdf788ff30648b69f4702f6eaf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deploymentInterval: 5
+  deploymentInterval: 3
 --- !u!1001 &1662110832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3957,7 +3981,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh133284
+  m_Name: pb_Mesh158330
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
