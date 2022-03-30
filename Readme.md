@@ -1,6 +1,6 @@
 # Flood
 <p align='center'>
-  <a href="https://ereldebel.itch.io/Flood/"><img src="https://leafo.net/igjc-presentation/itchio-logo.png" width=110/></a>
+  <a href="https://oriank.itch.io/Flood/"><img src="https://leafo.net/igjc-presentation/itchio-logo.png" width=110/></a>
 </p>
 An abstract static wave-based first-person shooter inspired by the arcade games: _Duck Hunt_ and _Space Invaders_.
 
