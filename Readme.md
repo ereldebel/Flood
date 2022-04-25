@@ -2,6 +2,12 @@
 
 An abstract static wave-based first-person shooter inspired by the arcade games: _Duck Hunt_ and _Space Invaders_.
 
+Protect your islands!
+Stop the enemies from reaching the water.
+
+Controls:
+Move the mouse left and right to rotate the camera. Aim the gun and use the left mouse button to shoot.
+
 The game was created by Orian Kidron, Nadav Baruch, Gilad Binshtok and I (with the former 2 as designers and the latter 2 as developers) as our 1st game jam, over a 2 week period in the _Gaming Lab_ course as part of the _Bezalel_ Game Development and Design Minor of my Computer Science B.Sc. in _The Hebrew University_, Jerusalem, Israel.
 
 <br>
