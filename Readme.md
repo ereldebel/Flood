@@ -12,6 +12,10 @@ The game was created by Orian Kidron, Nadav Baruch, Gilad Binshtok and I (with t
 
 <br>
 
+Source code can be seen at Assets/Scripts
+
+<br>
+
 The game is available at:
 <p align='center'>
   <a href="https://oriank.itch.io/Flood/"><img src="https://leafo.net/igjc-presentation/itchio-logo.png" width=550/></a>
