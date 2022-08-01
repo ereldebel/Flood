@@ -82,6 +82,7 @@ namespace Enemies
 
 		private void OnDisable()
 		{
+			if (!_waveManager) return;
 			--_waveManager.NumberOfLivingBatches;
 			_transform.rotation = Quaternion.identity;
 			foreach (var enemy in enemies)

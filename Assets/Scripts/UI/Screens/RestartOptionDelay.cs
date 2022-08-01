@@ -5,19 +5,22 @@ namespace UI.Screens
 {
 	public class RestartOptionDelay : MonoBehaviour
 	{
+		[SerializeField] private float delayTime = 1;
+		
 		private StartOnClick _startOnClick;
 		private TextMeshProUGUI _replayText;
-		[SerializeField] private float delayTime = 1;
+		private float _startTime;
 
 		private void Awake()
 		{
+			_startTime = Time.time;
 			_startOnClick = GetComponent<StartOnClick>();
 			_replayText = GetComponent<TextMeshProUGUI>();
 		}
 
 		private void Update()
 		{
-			if (Time.time < delayTime) return;
+			if (Time.time - _startTime < delayTime) return;
 			_startOnClick.enabled = true;
 			_replayText.enabled = true;
 			Destroy(this);
